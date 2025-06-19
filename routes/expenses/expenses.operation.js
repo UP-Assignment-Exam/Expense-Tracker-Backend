@@ -52,7 +52,7 @@ const getExpenses = async (req, res) => {
 
     const total = await Expense.countDocuments(filters);
 
-    const expenses = await Expense.find({ userId: req.user._id })
+    const expenses = await Expense.find(filters)
       .populate("categoryId")
       .sort({ date: -1 }) // most recent first
       .skip((pageNo - 1) * pageSize)
